@@ -6,11 +6,11 @@ class TasksController < ApplicationController
   end
 
   def show
-
+    @task = Task.find(params[:id])
+    render :json => @task
   end
 
   def done_tasks
-
     @tasks = Task.first(2)
     render :json => @tasks
   end

@@ -16,7 +16,13 @@ class TasksController < ApplicationController
   end
 
   def update
+    @task = Task.find(task_params[:id])
 
+      if @task.update(task_params)
+        render :json => @task
+      else
+        render :json => {'success': false}
+      end
   end
 
   def create
@@ -31,5 +37,10 @@ class TasksController < ApplicationController
 
   def delete
 
+  end
+
+  private
+  def task_params
+    params.permit(:id, :title, :description)
   end
 end
